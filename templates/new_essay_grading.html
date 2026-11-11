@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Essay Evaluation — ChatScholar{% endblock %}
+
+{% block content %}
+<a class="back" href="{{ url_for('essay_rubric') }}">← Edit rubric</a>
+
+<section class="page-head">
+  <p class="eyebrow">Essay Evaluation Studio · Phase 02</p>
+  <h1>Turn a draft into <span class="accent-text">direction.</span></h1>
+  <p class="lede">Submit your essay draft as text or PDF. Evaluation is calibrated strictly against your defined rubric criteria.</p>
+</section>
+
+{% if error %}
+<div class="alert-banner">
+  <span class="alert-icon">⚠️</span>
+  <div>
+    <strong>Evaluation Alert</strong>
+    <p>{{ error }}</p>
+  </div>
+</div>
+{% endif %}
+
+<section class="rubric-grid">
+  <form class="panel form-stack" method="post" enctype="multipart/form-data" data-loading>
+    <div class="panel-title">
+      <h2>Submit Essay for Evaluation</h2>
+      <span class="hint">Upload PDF or paste draft text</span>
+    </div>
+
+    <div>
+      <label class="field-label" for="file">Source PDF Document (Optional)</label>
+      <input class="text-input" type="file" name="file" id="file" accept=".pdf">
+    </div>
+
+    <div>
+      <label class="field-label" for="essay_text">Essay Manuscript</label>
+      <textarea class="text-area" name="essay_text" id="essay_text" placeholder="Paste your essay manuscript or draft text here…">{{ input_text if input_text else '' }}</textarea>
+    </div>
+
+    <button class="button" type="submit">Generate Rubric Evaluation <span>→</span></button>
+  </form>
+
+  <aside class="panel">
+    <div class="panel-title">
+      <h2>Evaluation Desk</h2>
+      <span class="eyebrow">Analytical Report</span>
+    </div>
+
+    {% if result %}
+      <div class="result">
+        <p>{{ result | safe }}</p>
+      </div>
+    {% else %}
+      <div class="empty">
+        <div>
+          <div class="upload-icon" style="margin:auto">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+          </div>
+          <h3>Awaiting Manuscript</h3>
+          <p>Your comprehensive rubric-guided critique and scores will be synthesized here upon submission.</p>
+        </div>
+      </div>
+    {% endif %}
+  </aside>
+</section>
+{% endblock %}

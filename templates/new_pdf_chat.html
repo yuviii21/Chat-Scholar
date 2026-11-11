@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}PDF Workspace — ChatScholar{% endblock %}
+
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">← Back to home</a>
+
+<section class="page-head">
+  <p class="eyebrow">Document Corpus Ingestion</p>
+  <h1>Let your documents <span class="accent-text">speak.</span></h1>
+  <p class="lede">Upload one or more academic PDFs. ChatScholar indexes text chunks and embeddings for rigorous contextual inquiry.</p>
+</section>
+
+{% if error %}
+<div class="alert-banner">
+  <span class="alert-icon">⚠️</span>
+  <div>
+    <strong>Authentication / Processing Alert</strong>
+    <p>{{ error }}</p>
+  </div>
+</div>
+{% endif %}
+
+<section class="workspace">
+  <form class="panel form-stack" action="{{ url_for('process_documents') }}" method="post" enctype="multipart/form-data" data-loading>
+    <div class="panel-title">
+      <h2>Upload Source Documents</h2>
+      <span class="hint">PDF format · Batch upload supported</span>
+    </div>
+
+    <div class="upload-zone" data-upload-zone>
+      <div class="upload-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+      </div>
+      <h3>Drag and drop academic PDFs</h3>
+      <p class="hint">Or select files directly from your computer.</p>
+      <input class="file-input" data-file-input type="file" name="pdf_docs" id="pdf_docs" accept=".pdf" multiple required>
+      <label class="file-label" for="pdf_docs">Select Documents</label>
+      <div class="file-name" data-file-name>Supported format: PDF</div>
+    </div>
+
+    <button class="button" type="submit">Index & Ingest Documents <span>→</span></button>
+  </form>
+
+  <aside class="panel">
+    <div class="panel-title">
+      <h2>Methodology</h2>
+      <span class="eyebrow">Steps 01—03</span>
+    </div>
+    <div class="tip-list">
+      <div class="tip">
+        <span class="tip-number">1</span>
+        <span><strong>Ingestion & Parsing</strong><br>Document text is extracted, normalized, and split into overlapping semantic chunks.</span>
+      </div>
+      <div class="tip">
+        <span class="tip-number">2</span>
+        <span><strong>Vector Indexing</strong><br>Semantic embeddings are mapped into an in-memory FAISS vector index for high-fidelity retrieval.</span>
+      </div>
+      <div class="tip">
+        <span class="tip-number">3</span>
+        <span><strong>Grounded Synthesis</strong><br>Conversational queries pull exact evidentiary excerpts to substantiate every answer.</span>
+      </div>
+    </div>
+  </aside>
+</section>
+{% endblock %}

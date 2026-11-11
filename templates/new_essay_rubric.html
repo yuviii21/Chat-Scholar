@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Set a Rubric — ChatScholar{% endblock %}
+
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">← Back to home</a>
+
+<section class="page-head">
+  <p class="eyebrow">Essay Evaluation Studio · Phase 01</p>
+  <h1>Set the <span class="accent-text">standard.</span></h1>
+  <p class="lede">Define the qualitative and quantitative criteria for evaluation. ChatScholar uses this rubric as its analytical lens.</p>
+</section>
+
+<section class="rubric-grid">
+  <form class="panel form-stack" action="{{ url_for('essay_grading') }}" method="post" data-loading>
+    <div class="panel-title">
+      <h2>Evaluation Rubric</h2>
+      <span class="hint">Evaluation Criteria Required</span>
+    </div>
+    
+    <div>
+      <label class="field-label" for="essay_rubric">Grading Criteria, Weightings & Benchmarks</label>
+      <textarea class="text-area" name="essay_rubric" id="essay_rubric" placeholder="Example:
+1. Thesis & Argument (30%): Clear, defensible central claim substantiated with scholarly evidence.
+2. Structure & Synthesis (30%): Logical transitions between paragraphs; effective counter-arguments.
+3. Evidentiary Rigor (20%): Citations, qualitative precision, data integration.
+4. Style & Clarity (20%): Academic vocabulary, syntactic variation, grammar." required></textarea>
+    </div>
+
+    <button class="button" type="submit">Proceed to Essay Submission <span>→</span></button>
+  </form>
+
+  <aside class="panel">
+    <div class="panel-title">
+      <h2>Rubric Guidelines</h2>
+      <span class="eyebrow">Best Practices</span>
+    </div>
+    <div class="tip-list">
+      <div class="tip">
+        <span class="tip-number">A</span>
+        <span><strong>Specific Focus Areas</strong><br>Identify key dimensions such as thesis validity, structure, or methodology.</span>
+      </div>
+      <div class="tip">
+        <span class="tip-number">B</span>
+        <span><strong>Performance Benchmarks</strong><br>Articulate what differentiates exemplary work from baseline submissions.</span>
+      </div>
+      <div class="tip">
+        <span class="tip-number">C</span>
+        <span><strong>Constructive Direction</strong><br>Prompt the evaluator to surface actionable revisions alongside rubric scores.</span>
+      </div>
+    </div>
+  </aside>
+</section>
+{% endblock %}

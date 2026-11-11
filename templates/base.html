@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8fafc">
+  <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('cs-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', saved);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230f172a'><path d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z'/><path d='M6 6h10' stroke='%23ffffff' stroke-width='2'/><path d='M6 10h10' stroke='%23ffffff' stroke-width='2'/></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <title>{% block title %}ChatScholar{% endblock %}</title>
+</head>
+<body>
+  <header class="shell nav">
+    <div class="nav-left">
+      <a class="brand" href="{{ url_for('home') }}">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+            <path d="M6 6h10"></path>
+            <path d="M6 10h10"></path>
+          </svg>
+        </span>
+        ChatScholar
+      </a>
+      <nav class="nav-links">
+        <a class="nav-link" href="{{ url_for('pdf_chat') }}">PDF Workspace</a>
+        <a class="nav-link" href="{{ url_for('essay_rubric') }}">Essay Studio</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <span class="status"><i class="dot"></i> Research Desk Active</span>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" title="Switch light/dark theme">
+        <span class="theme-icon light-icon" aria-hidden="true">☀️</span>
+        <span class="theme-icon dark-icon" aria-hidden="true">🌙</span>
+        <span class="theme-label">Theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="shell">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="shell site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">ChatScholar</span>
+        <p class="footer-tagline">Academic research inquiry and rubric-calibrated evaluation platform.</p>
+      </div>
+      <div class="footer-links">
+        <a href="{{ url_for('home') }}">Overview</a>
+        <a href="{{ url_for('pdf_chat') }}">PDF Workspace</a>
+        <a href="{{ url_for('essay_rubric') }}">Essay Studio</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Dedicated to scholarly rigor, evidentiary precision, and academic growth.</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

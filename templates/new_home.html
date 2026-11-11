@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}ChatScholar — Learn with Clarity{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Academic Research & Writing Studio</p>
+    <h1>Bring every <span class="accent-text">idea</span> into focus.</h1>
+    <p class="lede">A calm, structured workspace for interrogating research, understanding dense academic documents, and receiving rigorous feedback on your writing.</p>
+    
+    <div class="hero-actions">
+      <a class="button" href="{{ url_for('pdf_chat') }}">Explore a PDF <span>→</span></a>
+      <a class="button secondary" href="{{ url_for('essay_rubric') }}">Grade an Essay <span>↗</span></a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <strong>PDF Chat</strong>
+        <span>Context-grounded query retrieval</span>
+      </div>
+      <div class="stat">
+        <strong>Essay Studio</strong>
+        <span>Rubric-guided analytical feedback</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="orbital" aria-hidden="true">
+    <div class="preview-card">
+      <div class="preview-top">
+        <span class="badge-source">SOURCE · 28 PAGES</span>
+        <span>RESEARCH_METHODOLOGY.PDF</span>
+        <span class="mini-dots"><i></i><i></i><i></i></span>
+      </div>
+
+      <div class="document">
+        <span class="document-tag">Core Thesis & Evidence</span>
+        <b>"How do qualitative observations substantiate empirical claims in modern peer research?"</b>
+        <div class="scan-line"></div>
+        <div class="scan-line short"></div>
+        <div class="scan-line"></div>
+      </div>
+
+      <div class="answer">
+        <div class="answer-header">
+          <small>Scholar Synthesis</small>
+          <span class="answer-rating">Rubric: Verified</span>
+        </div>
+        The methodology links primary survey metrics directly with the literature review in Section 4, demonstrating high conceptual coherence and evidentiary rigor.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <div class="features-head">
+    <p class="eyebrow">Academic Workflow</p>
+    <h2>Built for disciplined inquiry.</h2>
+    <p class="lede">Every feature is designed to reduce cognitive friction and heighten analytical clarity.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+          <path d="M6 6h10"></path>
+          <path d="M6 10h10"></path>
+        </svg>
+      </div>
+      <h3>Source-Grounded Retrieval</h3>
+      <p>Index multi-page academic papers into searchable vector embeddings for fast, verifiable factual extraction without hallucinations.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+      </div>
+      <h3>Rubric-Calibrated Feedback</h3>
+      <p>Define custom assessment criteria, weights, and benchmarks. ChatScholar grades drafts systematically against your expectations.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      </div>
+      <h3>Calm, Distraction-Free Space</h3>
+      <p>A refined, high-contrast reading environment built for sustained focus, with instant toggles between academic light and midnight themes.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

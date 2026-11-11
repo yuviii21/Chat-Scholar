@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Ask Your Sources — ChatScholar{% endblock %}
+
+{% block content %}
+<a class="back" href="{{ url_for('pdf_chat') }}">← Change documents</a>
+
+<section class="page-head">
+  <p class="eyebrow">Source-Grounded Inquiry</p>
+  <h1>Ask what <span class="accent-text">matters.</span></h1>
+  <p class="lede">Every query is evaluated strictly against the corpus of documents you prepared.</p>
+</section>
+
+{% if error %}
+<div class="alert-banner">
+  <span class="alert-icon">⚠️</span>
+  <div>
+    <strong>Inquiry Notice</strong>
+    <p>{{ error }}</p>
+  </div>
+</div>
+{% endif %}
+
+<section class="chat-shell">
+  <div class="panel">
+    <div class="panel-title">
+      <h2>Research Thread</h2>
+      <span class="status"><i class="dot"></i> Context Ready</span>
+    </div>
+
+    <div class="messages">
+      {% if chat_history %}
+        {% for message in chat_history %}
+          <article class="message {% if loop.index0 % 2 == 0 %}user{% else %}assistant{% endif %}">
+            <span class="avatar">{% if loop.index0 % 2 == 0 %}YOU{% else %}CS{% endif %}</span>
+            <div class="bubble">{{ message.content }}</div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <div class="empty">
+          <div>
+            <div class="upload-icon" style="margin:auto">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <h3>Your sources are indexed</h3>
+            <p>Ask for a thematic summary, key arguments, methodology breakdown, or specific citations.</p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <form class="composer" action="{{ url_for('chat') }}" method="post" data-loading>
+      <input class="text-input" type="text" name="user_question" id="user_question" autocomplete="off" placeholder="Ask a targeted question about your documents…" required>
+      <button class="button" type="submit">Inquire <span>↑</span></button>
+    </form>
+  </div>
+</section>
+{% endblock %}
